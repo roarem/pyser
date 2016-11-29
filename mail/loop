@@ -1,0 +1,15 @@
+#!/bin/bash
+
+read -s -p "Gmail passord " gpass
+echo  
+read -s -p "Hotmail passord " hpass
+echo 
+read -s -p "UIO passord " upass
+echo
+
+while :
+do
+    echo "$gpass,$hpass,$upass" | /home/roar/prosjekt/python_server/python/bin/python mailChecker2.py 
+    sleep 20
+done
+
