@@ -1,5 +1,6 @@
 import socket, sys, threading
-import verdensdytt, read 
+from mail import read
+from verdensdytt import store
 
 class Server:
 
@@ -45,8 +46,9 @@ class Server:
                 conn.sendall(reply.encode())
                 break
             elif 'dytt' in data:
-                data = data.split()
-                verdensdytt.store.store(int(data[1]))
+                data = data.split(',')
+                print(data[0],data[1])
+                store.store(int(data[1]))
                 break
             if not data:
                 break
