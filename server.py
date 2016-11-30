@@ -11,10 +11,10 @@ class Server:
         self.s.listen(10)
 
     def __call__(self):
-        print("listening for messages")
+        print("listening for connections")
         while 1:
             conn, addr = self.s.accept()
-            print(addr[0],str(addr[1]))
+            print("opening connection {}".format(addr))
             t = threading.Thread(target=self.clientthread,args=(conn,addr))
             t.start()
 
@@ -39,23 +39,29 @@ class Server:
                 break
 
             if data=='mail':
-                #with open('../mail/mail_results','r') as f:
-                #    reply = f.readline()
-                #    print(reply)
                 reply = read.read_mail()
                 conn.sendall(reply.encode())
                 break
+
             elif 'dytt' in data:
                 data = data.split(',')
                 print(data[0],data[1])
-                store.store(int(data[1]))
+                try:
+                    number = int(data[1])
+                    printout = "verdensdytt: {}".format(number)
+                    reply    = "Good job!".encode()
+                    store.store(int(data[1]))
+                except:
+                    printout = "No number recieved"
+                    reply    = "Fucker...".encode()
+
+                print(printout)
+                conn.sendall(reply)
                 break
+
             if not data:
                 break
-            if data=='q':
-                break
     
-            #conn.sendall(reply)
         print("closing connection {}".format(addr))
         conn.close()
 

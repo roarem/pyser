@@ -8,6 +8,8 @@ def verdytt_add():
     s.connect((host,port))
     number = droid.dialogGetInput("Verdensdytter","Antall verdensdytt","")
     s.send('dytt,{}'.format(number.result).encode())
+    reply = s.recv(1024).decode()
+    droid.makeToast(reply)
     s.close()
 
 if __name__=='__main__':
