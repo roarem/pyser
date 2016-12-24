@@ -1,4 +1,4 @@
-import socket, sys, threading
+import socket, sys, threading, time
 from mail import read
 from verdensdytt import store
 
@@ -14,7 +14,8 @@ class Server:
         print("listening for connections")
         while 1:
             conn, addr = self.s.accept()
-            print("opening connection {}".format(addr))
+            day = time.strftime('%d %b %A %H:%M:%S %Y')
+            print("{} | opening connection {}".format(day,addr))
             t = threading.Thread(target=self.clientthread,args=(conn,addr))
             t.start()
 
@@ -62,7 +63,8 @@ class Server:
             if not data:
                 break
     
-        print("closing connection {}".format(addr))
+        day = time.strftime('%d %b %A %H:%M:%S %Y')
+        print("{} | closing connection {}".format(day,addr))
         conn.close()
 
     

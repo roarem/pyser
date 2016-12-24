@@ -9,7 +9,6 @@ echo
 
 while :
 do
-    echo "$gpass,$hpass,$upass" | /home/roar/prosjekt/python_server/python/bin/python mailChecker2.py 
+    echo "$gpass,$hpass,$upass" | /home/roar/scripts/pyser/mail/python/bin/python mailChecker2.py
     sleep 20
 done
-
