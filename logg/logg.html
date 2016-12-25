@@ -1,0 +1,31 @@
+<html>
+    <head>
+	<meta name="viewport"
+	      content="width=device-width, target-densitydpi=device-dpi,
+		       initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
+        />
+	<script>
+	    var droid = new Android();
+
+	    function postInput(input) {
+		if (event.KeyCode==13)
+		    droid.eventPost('line',input)
+
+		droid.registerCallback('stdout',function(e){
+		    document.getElementById('output').innerHTML = e.data;
+		});
+	    }
+	</script>
+    </head>
+
+    <body>
+	<div id="banner">
+	    <h1>Logg</h1>
+	</div>
+	<input id="userin" type="text" spellcheck="false"
+	       autofocus="autofocus" onkeyup="postInput(this.value)"
+	/>
+	<div id="output"></div>
+
+    </body>
+</html>
