@@ -6,15 +6,9 @@
         />
 	<script>
 	    var droid = new Android();
-
-	    function postInput(input) {
-		if (event.KeyCode==13)
-		    droid.eventPost('line',input)
-
-		droid.registerCallback('stdout',function(e){
-		    document.getElementById('output').innerHTML = e.data;
-		});
-	    }
+		function send_input(){
+			var x = document.getElementById("userin").value
+			droid.eventPost('message',x)
 	</script>
     </head>
 
@@ -22,10 +16,12 @@
 	<div id="banner">
 	    <h1>Logg</h1>
 	</div>
-	<input id="userin" type="text" spellcheck="false"
-	       autofocus="autofocus" onkeyup="postInput(this.value)"
-	/>
-	<div id="output"></div>
+	<textarea id="userin" type="text" spellcheck="false"
+	          autofocus="autofocus" 
+			  cols="100" rows="8"></textarea>
+
+	<button id="send" type="button"
+				   onclick="send_input()">PUSH, maybe?</button>
 
     </body>
 </html>

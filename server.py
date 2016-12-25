@@ -47,7 +47,6 @@ class Server:
                 break
 
             elif data[0]=='dytt':
-                data = data.split(',')
                 print(data[0],data[1])
                 try:
                     number = int(data[1])
@@ -62,7 +61,11 @@ class Server:
                 conn.sendall(reply)
                 break
 
-            elif data[0]=='log':
+            elif data[0]=='logg':
+                print(data[0],data[1])
+                logg.logger(data[1])
+                break
+
             if not data:
                 break
     

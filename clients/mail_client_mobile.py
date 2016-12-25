@@ -1,12 +1,12 @@
 import socket, sl4a
 
 def Mail():
-    host = '37.191.195.168'
+    host = '193.157.210.105'
     port = 60002
     droid = sl4a.Android()
     s = socket.socket()
     s.connect((host,port))
-    s.send('mail'.encode())
+    s.send('mail,'.encode())
     message = s.recv(1024).decode() 
     droid.makeToast(message)
     s.close()
