@@ -1,7 +1,7 @@
 import socket, sl4a
 
 def verdytt_add():
-    host = '37.191.195.168'
+    host = '193.157.210.105'
     port = 60002
     droid = sl4a.Android()
     s = socket.socket()

@@ -1,6 +1,7 @@
 import socket, sys, threading, time
 from mail import read
 from verdensdytt import store
+from logg import logg
 
 class Server:
 
@@ -35,16 +36,17 @@ class Server:
         while 1:
             try:
                 data = conn.recv(1024).decode()
+                data = data.split(',')
             except ConnectionResetError:
                 print("connection lost")
                 break
 
-            if data=='mail':
+            if data[0]=='mail':
                 reply = read.read_mail()
                 conn.sendall(reply.encode())
                 break
 
-            elif 'dytt' in data:
+            elif data[0]=='dytt':
                 data = data.split(',')
                 print(data[0],data[1])
                 try:
@@ -60,6 +62,7 @@ class Server:
                 conn.sendall(reply)
                 break
 
+            elif data[0]=='log':
             if not data:
                 break
     
