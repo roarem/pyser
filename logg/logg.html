@@ -7,8 +7,9 @@
 	<script>
 	    var droid = new Android();
 		function send_input(){
-			var x = document.getElementById("userin").value
-			droid.eventPost('message',x)
+			var x = document.getElementById("userin").value;
+			droid.eventPost('message',x);
+		}
 	</script>
     </head>
 
@@ -22,6 +23,5 @@
 
 	<button id="send" type="button"
 				   onclick="send_input()">PUSH, maybe?</button>
-
     </body>
 </html>
