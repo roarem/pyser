@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from imapclient import IMAPClient
-import time, sys
+import time, sys, plyer
 
 sadface = "        /\ /\ \n        \/ \/ \n        ____ \n       /    \\"
 passord = sys.stdin.readline().strip().split(",")
@@ -53,14 +53,19 @@ newlines = 7 - output_string.count('\n')
 for new in range(newlines):
     output_string+='\n'
 
+f = open('mail_results','r')
+old_i3bar_string = f.readline()
+f.close()
 with open("mail_results",'w') as f:
     pseudo = ['S','L','V']
     i3bar_string = ''
     for i,j in zip(pseudo,i3bar[3:]):
         if j:
             i3bar_string += '({}{}) '.format(i,j)
-
+    
     i3bar_string += '{} {} {}\n'.format(i3bar[0],i3bar[1],i3bar[2])
+    if i3bar_string != old_i3bar_string:
+        plyer.notification.notify(title="MAIL",message=i3bar_string,timeout=3)
     f.write(i3bar_string)
 
 output_string +=chr(13)
