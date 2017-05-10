@@ -2,6 +2,7 @@ import socket, sys, threading, time
 from mail import read
 from verdensdytt import store
 from logg import logg
+from bdag import bdag
 
 class Server:
 
@@ -64,6 +65,12 @@ class Server:
             elif data[0]=='logg':
                 print(data[0],data[1])
                 logg.logger(data[1])
+                break
+
+            elif data[0]=='bdag':
+                reply = bdag.bdager().igjen()
+                print(reply)
+                conn.sendall(reply.encode())
                 break
 
             if not data:
