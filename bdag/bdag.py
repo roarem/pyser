@@ -38,13 +38,15 @@ class bdager:
         for pers in self.alle:
             digjen = pers['d_igjen']
             if digjen<0:
-                igjen_siden = REDfg+'siden'
+                ut_streng = '{0:10}  {1:3} dager '+REDfg+'siden'+END
             elif digjen >0 and digjen <5:
-                igjen_siden = BLINK+YELLOfg+'igjen'
+                ut_streng = '{0:10}  {1:3} dager '+BLINK+YELLOfg+'igjen'+END
+            elif digjen==0:
+                ut_streng = BLINK+'{0:10}  {1:3} dager igjen'+END
             else:
-                igjen_siden = GREENfg+'igjen'
-            igjen_siden += END
-            siste += ut_streng.format(pers['navn'],abs(pers['d_igjen']),igjen_siden)
+                ut_streng = '{0:10}  {1:3} dager '+GREENfg+'igjen'+END
+            ut_streng += '\n'
+            siste += ut_streng.format(pers['navn'],abs(pers['d_igjen']))
         return siste
 
 if __name__=='__main__':
