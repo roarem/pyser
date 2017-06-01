@@ -1,5 +1,5 @@
 import socket, sys, threading
-import verdensdytt, read 
+import verdensdytt, read, bdag
 
 class Server:
 
@@ -47,6 +47,10 @@ class Server:
             elif 'dytt' in data:
                 data = data.split()
                 verdensdytt.store.store(int(data[1]))
+                break
+            elif 'bdag' in data:
+                reply = bdag.left()
+                conn.sendall(reply.encode())
                 break
             if not data:
                 break
