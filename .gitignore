@@ -1,1 +1,3 @@
 *.pyc
+lib/
+mail_results
